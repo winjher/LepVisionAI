@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LepVision Company Profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1630;
+    --ink-soft:#3A4266;
+    --muted:#6B7290;
+    --paper:#F6F3EC;
+    --paper-raised:#FFFFFF;
+    --line:#DEDACB;
+    --teal:#178C86;
+    --teal-deep:#0F5F5B;
+    --gold:#C8973F;
+    --gold-soft:#F1E3C4;
+    --max:780px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Serif 4', Georgia, 'Times New Roman', serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk', 'Segoe UI', sans-serif;
+    color:var(--ink);
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:var(--teal-deep);}
+  img,svg{max-width:100%;}
+
+  /* ---------- top nav ---------- */
+  .topnav{
+    position:sticky; top:0; z-index:20;
+    background:rgba(246,243,236,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .topnav-inner{
+    max-width:var(--max); margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    font-family:'Space Grotesk', sans-serif;
+  }
+  .topnav .mark{ font-weight:700; font-size:1rem; letter-spacing:0.01em; }
+  .topnav .mark span{ color:var(--teal-deep); }
+  .topnav nav{ display:flex; gap:22px; }
+  .topnav nav a{
+    font-size:0.86rem; color:var(--ink-soft); text-decoration:none; font-weight:500;
+    border-bottom:1px solid transparent; padding-bottom:2px;
+  }
+  .topnav nav a:hover{ border-bottom-color:var(--teal); color:var(--ink); }
+  @media (max-width:640px){ .topnav nav{ display:none; } }
+
+  /* ---------- hero ---------- */
+  .hero{
+    max-width:var(--max); margin:0 auto; padding:88px 24px 64px;
+    position:relative;
+  }
+  .hero .kicker{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:0.92rem; color:var(--teal-deep); font-weight:600;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.1rem);
+    line-height:1.02;
+    font-weight:700;
+    max-width:11ch;
+  }
+  .hero .sub{
+    margin-top:22px; max-width:52ch;
+    font-size:1.18rem; color:var(--ink-soft);
+  }
+  .hero .tagline{
+    margin-top:34px;
+    font-family:'Space Grotesk', sans-serif;
+    font-size:1rem; font-weight:600; color:var(--gold);
+    border-left:3px solid var(--gold);
+    padding-left:14px;
+  }
+  .hero-motif{
+    position:absolute; right:24px; top:70px; width:190px; height:190px;
+    opacity:0.9; pointer-events:none;
+  }
+  @media (max-width:780px){ .hero-motif{ display:none; } }
+
+  /* ---------- sections ---------- */
+  section{ max-width:var(--max); margin:0 auto; padding:56px 24px; }
+  section + section{ border-top:1px solid var(--line); }
+  .eyebrow{
+    font-family:'Space Grotesk', sans-serif; font-size:0.86rem; font-weight:600;
+    color:var(--teal-deep); margin-bottom:10px;
+  }
+  h2.title{ font-size:1.9rem; font-weight:700; max-width:22ch; }
+  .lede{ margin-top:18px; font-size:1.08rem; color:var(--ink-soft); max-width:62ch; }
+
+  .services{ margin-top:34px; display:grid; gap:22px; }
+  .service{ display:grid; grid-template-columns:100px 1fr; gap:20px; align-items:baseline; }
+  .service .label{
+    font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:0.92rem;
+    color:var(--ink); padding-top:2px;
+  }
+  .service p{ margin:0; color:var(--ink-soft); font-size:1.02rem; }
+  @media (max-width:560px){ .service{ grid-template-columns:1fr; gap:4px; } }
+
+  /* ---------- vision / mission ---------- */
+  .vm-grid{ margin-top:34px; display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+  @media (max-width:680px){ .vm-grid{ grid-template-columns:1fr; } }
+  .vm-block h3{
+    font-size:1.05rem; font-weight:600; color:var(--teal-deep);
+    margin-bottom:12px;
+  }
+  .vm-block p{ color:var(--ink-soft); margin:0 0 10px; }
+  .mission-list{ list-style:none; margin:0; padding:0; }
+  .mission-list li{
+    position:relative; padding-left:20px; margin-bottom:12px; color:var(--ink-soft);
+  }
+  .mission-list li::before{
+    content:""; position:absolute; left:0; top:0.55em; width:6px; height:6px;
+    background:var(--gold); border-radius:50%;
+  }
+  .mission-list b{ color:var(--ink); font-weight:600; }
+
+  /* ---------- core values acrostic ---------- */
+  .values{ margin-top:30px; }
+  .value-row{
+    display:grid; grid-template-columns:56px 1fr; gap:20px;
+    padding:18px 0; border-bottom:1px solid var(--line);
+  }
+  .value-row:first-child{ border-top:1px solid var(--line); }
+  .value-letter{
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:2rem;
+    color:var(--teal); line-height:1;
+  }
+  .value-body h4{
+    font-family:'Space Grotesk', sans-serif; margin:0 0 4px; font-size:1.03rem;
+    font-weight:600; color:var(--ink);
+  }
+  .value-body p{ margin:0; color:var(--muted); font-size:0.98rem; }
+
+  /* ---------- roadmap ---------- */
+  .roadmap{ margin-top:32px; }
+  .road-item{
+    display:grid; grid-template-columns:44px 1fr; gap:18px;
+    padding-bottom:30px; position:relative;
+  }
+  .road-item:not(:last-child)::before{
+    content:""; position:absolute; left:21px; top:36px; bottom:0;
+    width:1px; background:var(--line);
+  }
+  .road-num{
+    width:44px; height:44px; border-radius:50%;
+    background:var(--paper-raised); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk', sans-serif; font-weight:600; color:var(--teal-deep);
+    font-size:0.95rem;
+  }
+  .road-body h4{
+    font-family:'Space Grotesk', sans-serif; font-size:1.04rem; font-weight:600;
+    margin:6px 0 6px; color:var(--ink);
+  }
+  .road-body p{ margin:0; color:var(--ink-soft); }
+
+  /* ---------- leadership quote ---------- */
+  .quote-wrap{ background:var(--ink); color:var(--paper); }
+  .quote-wrap .eyebrow{ color:var(--gold-soft); }
+  .quote-wrap h2.title{ color:#fff; }
+  blockquote{
+    margin:30px 0 0; font-size:1.28rem; line-height:1.55; color:#EDEAE0;
+    max-width:60ch; font-style:italic;
+  }
+  .attribution{ margin-top:26px; font-family:'Space Grotesk', sans-serif; }
+  .attribution .name{ font-weight:700; color:#fff; font-size:1.02rem; }
+  .attribution .role{ color:var(--gold-soft); font-size:0.9rem; margin-top:2px; }
+
+  /* ---------- footer ---------- */
+  footer{
+    max-width:var(--max); margin:0 auto; padding:58px 24px 80px;
+    text-align:center;
+  }
+  footer .brand{
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.1rem;
+  }
+  footer .tag{
+    margin-top:10px; color:var(--muted); font-family:'Space Grotesk', sans-serif;
+    font-size:0.95rem;
+  }
+  footer .rule{
+    width:40px; height:2px; background:var(--gold); margin:26px auto 0; border:none;
+  }
+
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <div class="topnav-inner">
+    <div class="mark">Lep<span>Vision</span></div>
+    <nav>
+      <a href="#overview">Overview</a>
+      <a href="#vision">Vision &amp; Mission</a>
+      <a href="#values">Core Values</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#leadership">Leadership</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <svg class="hero-motif" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="100" cy="100" r="70" stroke="#178C86" stroke-opacity="0.35" stroke-width="1"/>
+    <circle cx="100" cy="100" r="46" stroke="#C8973F" stroke-opacity="0.45" stroke-width="1"/>
+    <line x1="100" y1="30" x2="100" y2="6" stroke="#178C86" stroke-opacity="0.5"/>
+    <line x1="100" y1="170" x2="100" y2="194" stroke="#178C86" stroke-opacity="0.5"/>
+    <line x1="30" y1="100" x2="6" y2="100" stroke="#178C86" stroke-opacity="0.5"/>
+    <line x1="170" y1="100" x2="194" y2="100" stroke="#178C86" stroke-opacity="0.5"/>
+    <circle cx="100" cy="30" r="4" fill="#178C86"/>
+    <circle cx="154" cy="100" r="4" fill="#C8973F"/>
+    <circle cx="100" cy="154" r="4" fill="#178C86"/>
+  </svg>
+  <div class="kicker">Company Profile</div>
+  <h1>Engineering the Philippines' next digital chapter.</h1>
+  <p class="sub">LepVision is an Information Technology consultancy and services firm driving digital transformation, engineering innovation, and technological advancement for businesses, institutions, and communities.</p>
+  <p class="tagline">Innovating Technology. Empowering People. Transforming the Future.</p>
+</header>
+
+<section id="overview">
+  <div class="eyebrow">Company overview</div>
+  <h2 class="title">Where academic excellence meets industry application</h2>
+  <p class="lede">LepVision empowers communities, businesses, educational institutions, and government organizations through end-to-end tech solutions — creating a dynamic ecosystem for students and professionals to build practical skills, ethical leadership, and entrepreneurial mindsets across IT, Computer Science, and Engineering.</p>
+
+  <div class="services">
+    <div class="service">
+      <div class="label">IT Consulting &amp; Software Engineering</div>
+      <p>Custom software, enterprise systems integration, and cloud-based digital solutions.</p>
+    </div>
+    <div class="service">
+      <div class="label">Smart Technologies &amp; Engineering</div>
+      <p>Smart systems, Geographic Information Systems (GIS), environmental monitoring, and specialized technical support services.</p>
+    </div>
+    <div class="service">
+      <div class="label">Capacity Building &amp; Academe Partnerships</div>
+      <p>Hands-on internship programs, industry-aligned training, and collaborative research initiatives.</p>
+    </div>
+  </div>
+</section>
+
+<section id="vision">
+  <div class="eyebrow">Vision &amp; mission</div>
+  <h2 class="title">A leading technology and innovation hub</h2>
+  <div class="vm-grid">
+    <div class="vm-block">
+      <h3>Vision</h3>
+      <p>To become a leading technology and innovation hub in the Philippines and beyond — empowering communities through digital transformation, sustainable engineering solutions, and world-class IT services, while fostering future generations of technology leaders and innovators.</p>
+    </div>
+    <div class="vm-block">
+      <h3>Mission</h3>
+      <ul class="mission-list">
+        <li><b>Deliver excellence</b> — high-quality IT consultancy and cutting-edge digital solutions tailored to complex business and community needs.</li>
+        <li><b>Engineer sustainability</b> — deploy sustainable technology and engineering services that solve pressing real-world challenges.</li>
+        <li><b>Bridge industry &amp; academe</b> — partner with schools to offer industry-relevant training, research, and immersive internships.</li>
+        <li><b>Develop future leaders</b> — equip young professionals with technical expertise, ethical values, and leadership skills.</li>
+        <li><b>Drive nation-building</b> — use technology to promote social inclusion, environmental sustainability, and economic progress.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="values">
+  <div class="eyebrow">Core values</div>
+  <h2 class="title">L.E.P.V.I.S.I.O.N.</h2>
+  <p class="lede">Nine letters, one standard for how we work — with clients, with partners, and with the students and professionals we train.</p>
+
+  <div class="values">
+    <div class="value-row">
+      <div class="value-letter">L</div>
+      <div class="value-body"><h4>Leadership Excellence</h4><p>Setting high standards in technical execution and team mentorship.</p></div>
+    </div>
+    <div class="value-row">
+      <div class="value-letter">E</div>
+      <div class="value-body"><h4>Empowerment Through Innovation</h4><p>Giving individuals and organizations the tools to innovate and adapt.</p></div>
+    </div>
+    <div class="value-row">
+      <div class="value-letter">P</div>
+      <div class="value-body"><h4>Professionalism &amp; Integrity</h4><p>Upholding uncompromising ethics, transparency, and quality in every engagement.</p></div>
+    </div>
+    <div class="value-row">
+      <div class="value-letter">V</div>
+      <div class="value-body"><h4>Visionary Thinking</h4><p>Anticipating technological shifts to build long-term, scalable solutions.</p></div>
+    </div>
+    <div class="value-row">
+      <div class="value-letter">I</div>
+      <div class="value-body"><h4>Inclusivity &amp; Collaboration</h4><p>Fostering diverse teams and collaborative ecosystems across academia and industry.</p></div>
+    </div>
+    <div class="value-row">
+      <div class="value-letter">S</div>
+      <div class="value-body"><h4>Sustainability &amp; Social Responsibility</h4><p>Designing tech solutions that respect the environment and serve local communities.</p></div>
+    </div>
+    <div class="value-row">
+      <div class="value-letter">I</div>
+      <div class="value-body"><h4>Innovation &amp; Continuous Learning</h4><p>Cultivating a culture of lifelong learning, research, and technical upskilling.</p></div>
+    </div>
+    <div class="value-row">
+      <div class="value-letter">O</div>
+      <div class="value-body"><h4>Opportunity Creation</h4><p>Unlocking talent potential and building viable career pathways for emerging talent.</p></div>
+    </div>
+    <div class="value-row">
+      <div class="value-letter">N</div>
+      <div class="value-body"><h4>Nation Building Through Technology</h4><p>Harnessing digital progress to propel national growth and digital inclusion.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="eyebrow">Strategic goals &amp; future roadmap</div>
+  <h2 class="title">A multidisciplinary incubator for the next generation of builders</h2>
+  <p class="lede">LepVision serves students and graduates across Information Technology, Computer Science, Computer Engineering, Electronics Engineering, Electrical Engineering, Civil Engineering, and Mechanical Engineering.</p>
+
+  <div class="roadmap">
+    <div class="road-item">
+      <div class="road-num">1</div>
+      <div class="road-body">
+        <h4>Talent incubator &amp; internship program</h4>
+        <p>Immersive, project-based learning and apprenticeships that prepare graduates for modern industry demands.</p>
+      </div>
+    </div>
+    <div class="road-item">
+      <div class="road-num">2</div>
+      <div class="road-body">
+        <h4>Technology &amp; R&amp;D hub</h4>
+        <p>Research facilities dedicated to Artificial Intelligence, Smart Agriculture, GIS, Environmental Analytics, and Software Engineering.</p>
+      </div>
+    </div>
+    <div class="road-item">
+      <div class="road-num">3</div>
+      <div class="road-body">
+        <h4>Direct career pathways</h4>
+        <p>Transitioning high-performing interns and apprentices directly into full-time roles within LepVision and its partner network.</p>
+      </div>
+    </div>
+    <div class="road-item">
+      <div class="road-num">4</div>
+      <div class="road-body">
+        <h4>Academe-industry alignment</h4>
+        <p>Collaborating with top universities to align academic curricula with emerging technologies and market needs.</p>
+      </div>
+    </div>
+    <div class="road-item">
+      <div class="road-num">5</div>
+      <div class="road-body">
+        <h4>National digital progress</h4>
+        <p>Building sustainable technology solutions that target local development, disaster resilience, and community empowerment.</p>
+      </div>
+    </div>
+    <div class="road-item">
+      <div class="road-num">6</div>
+      <div class="road-body">
+        <h4>Entrepreneurship &amp; leadership pipeline</h4>
+        <p>Mentoring young technical talent to become future founders, CTOs, CEOs, and chief researchers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="leadership" class="quote-wrap">
+  <div class="eyebrow">Executive leadership commitment</div>
+  <h2 class="title">A promise beyond employment</h2>
+  <blockquote>"At LepVision, we believe that today's students are tomorrow's innovators, engineers, and industry leaders. Our commitment is not only to provide employment but also to create an environment where future IT professionals, Computer Scientists, and Engineers can learn, innovate, lead, and transform communities through technology."</blockquote>
+  <div class="attribution">
+    <div class="name">Dr. Jerwin M. Montellano</div>
+    <div class="role">Chief Executive Officer, LepVision Company</div>
+  </div>
+</section>
+
+<footer>
+  <div class="brand">LepVision Company</div>
+  <div class="tag">Innovating Technology. Empowering People. Transforming the Future.</div>
+  <hr class="rule">
+</footer>
+
+</body>
+</html>
